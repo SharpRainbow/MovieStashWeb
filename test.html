@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick-theme.css"/>
+</head>
+<body>
+<div class="slider">
+    <div><h3>1</h3></div>
+    <div><h3>2</h3></div>
+    <div><h3>3</h3></div>
+    <div><h3>4</h3></div>
+    <div><h3>5</h3></div>
+    <div><h3>6</h3></div>
+</div>
+
+<!-- Include jQuery and Slick scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick.min.js"></script>
+
+<!-- Initialize the Slick slider -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.slider').slick({
+            slidesToShow: 4,
+            slidesToScroll: 4
+        });
+    });
+</script>
+</body>
+</html>

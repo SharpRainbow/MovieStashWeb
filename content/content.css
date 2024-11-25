@@ -1,0 +1,52 @@
+h1 {
+    margin: 0;
+}
+
+h3 {
+    margin-bottom: 4px;
+}
+
+label {
+    margin-left: 4px;
+}
+
+.img-container {
+    width: 150px;
+    height: 250px;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    user-select: none;
+}
+
+.movie-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    align-items: flex-start;
+}
+
+.horizontal-container1 {
+    display: flex;
+}
+
+.horizontal-container {
+    display: flex;
+    align-items: center;
+}
+
+.property {
+    min-width: fit-content;
+    width: 200px;
+}
+
+.value {
+    word-wrap: break-word;
+}
+
+.content {
+    padding-left: 20px;
+}

@@ -1,0 +1,88 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    /*box-sizing: border-box;*/
+    --md-sys-color-surface-container-high: #80CAFF;
+    --md-sys-color-primary: black;
+    --md-icon-font: 'Material Symbols Rounded'
+}
+
+body {
+    display: flex;
+    font-family: Roboto, system-ui, sans-serif;
+    background-color: #CAE9FE;
+    overflow-x: clip;
+}
+
+/* Navigation Rail */
+.nav-rail {
+    width: 80px;
+    background-color: #ECFEFF; /* Light blue background */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.nav-item {
+    width: 60px;
+    height: 60px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #4A5671;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.nav-item .icon-container {
+    width: 60px;
+    height: 35px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-item:hover .icon-container {
+    background-color: #80CAFF; /* Slightly darker blue on hover */
+}
+
+.nav-item.active .icon-container {
+    font-variation-settings: 'FILL' 1;
+    background-color: #80CAFF; /* Distinct blue for the active item */
+}
+
+.nav-label {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #4A5671;
+    font-weight: bold;
+}
+
+.material-icons {
+    font-size: 24px;
+    color: inherit; /* Inherit color to change on active state */
+}
+
+/* Main Content */
+#main-content {
+    margin-left: 80px; /* Same as nav-rail width to avoid overlap */
+    padding-top: 20px;
+    /*padding-left: 20px;*/
+    flex-grow: 1;
+    width: calc(100vw - 80px);
+}
+
+.your-class {
+    margin-left: 100px;
+}

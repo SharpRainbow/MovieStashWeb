@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Material Navigation Rail</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL@20..48,100..700,0..1"  rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+  </script>
+  <script src="script.js"></script>
+</head>
+<body>
+<div class="nav-rail">
+  <md-fab aria-label="Edit">
+    <md-icon slot="icon">search</md-icon>
+  </md-fab>
+  <div class="nav-item active" data-page="/home/home.html">
+    <div class="icon-container">
+      <md-icon slot="icon">home</md-icon>
+    </div>
+    <span class="nav-label">Главная</span>
+  </div>
+  <div class="nav-item" data-page="/content/content.html">
+    <div class="icon-container">
+      <md-icon slot="icon">collections_bookmark</md-icon>
+    </div>
+    <span class="nav-label">Подборки</span>
+  </div>
+  <div class="nav-item">
+    <div class="icon-container">
+      <md-icon slot="icon">newsmode</md-icon>
+    </div>
+    <span class="nav-label">Новости</span>
+  </div>
+  <div class="nav-item" data-page="/account/account.html">
+    <div class="icon-container">
+      <md-icon slot="icon">person</md-icon>
+    </div>
+    <span class="nav-label">Аккаунт</span>
+  </div>
+</div>
+
+<div id="main-content">
+  <h1>Welcome to the Dashboard</h1>
+  <p>Select an option from the navigation rail.</p>
+</div>
+
+</body>
+
+</html>
