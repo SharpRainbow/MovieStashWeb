@@ -6,28 +6,36 @@
 </head>
 <body>
 <div class="content">
-<h1>Popular now</h1>
+<h1>Популярно сейчас</h1>
 <link rel="stylesheet" href="/home/home.css">
 <div class="wrapper">
-  <section class="slider">
-    <div class="image-container">
+  <section id="slider-content" class="slider">
+    <div class="image-container" data-page="/content/content.html">
       <img src="/home/paceholder.jpg" alt="Description 1">
     </div>
   </section>
-  <button class="scroll-button left">
+  <button id="left-content" class="scroll-button left">
     <md-icon slot="icon">chevron_backward</md-icon>
   </button>
-  <button class="scroll-button right">
+  <button id="right-content" class="scroll-button right">
     <md-icon slot="icon">chevron_forward</md-icon>
   </button>
 </div>
-<h1>Editor picks</h1>
-<section class="slider">
+<h1>Выбор редакторов</h1>
+<div class="wrapper">
+<section id="slider-col" class="slider">
   <div class="collection-container">
     <md-icon slot="icon">movie</md-icon>
     <label>Collection name</label>
   </div>
 </section>
+<button id="left-col" class="scroll-button left">
+  <md-icon slot="icon">chevron_backward</md-icon>
+</button>
+<button id="right-col" class="scroll-button right">
+  <md-icon slot="icon">chevron_forward</md-icon>
+</button>
+</div>
 <script src="/home/home.js"></script>
 </div>
 </body>

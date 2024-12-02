@@ -1,10 +1,8 @@
 /* Reset */
 * {
-    margin: 0;
-    padding: 0;
+    /*margin: 0;*/
+    /*padding: 0;*/
     /*box-sizing: border-box;*/
-    --md-sys-color-surface-container-high: #80CAFF;
-    --md-sys-color-primary: black;
     --md-icon-font: 'Material Symbols Rounded'
 }
 
@@ -13,6 +11,11 @@ body {
     font-family: Roboto, system-ui, sans-serif;
     background-color: #CAE9FE;
     overflow-x: clip;
+}
+
+md-fab {
+    --md-sys-color-surface-container-high: #80CAFF;
+    --md-sys-color-primary: black;
 }
 
 /* Navigation Rail */
@@ -28,6 +31,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 100;
 }
 
 .nav-item {
@@ -85,4 +89,32 @@ body {
 
 .your-class {
     margin-left: 100px;
+}
+
+@media screen and (max-device-width: 480px) {
+    .nav-label {
+        display: none;
+    }
+
+    .nav-item {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-item.active .icon-container {
+        background-color: #ECFEFF; /* Distinct blue for the active item */
+    }
+
+    .nav-rail {
+        width: 60px;
+    }
+
+    #main-content {
+        margin-left: 60px;
+    }
+
+    md-fab {
+        width: 50px;
+        height: 50px;
+    }
 }

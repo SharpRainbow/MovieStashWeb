@@ -15,6 +15,6 @@
   "dependencies": {
     "@material/web": "^2.2.0",
     "@rollup/plugin-node-resolve": "^15.3.0",
-    "rollup": "^4.24.2"
+    "rollup": "^4.27.4"
   }
 }

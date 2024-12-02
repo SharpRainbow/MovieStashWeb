@@ -2,45 +2,125 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <title>Title</title>
 </head>
 <body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const nodes = document.querySelectorAll('.person-container');
+        nodes.forEach(node => {
+            [...Array(15)].forEach(_ => node.parentNode.insertBefore(node.cloneNode(true), node));
+        });
+        const slider = document.querySelector(".slider");
+        const leftButton = document.querySelector(".scroll-button.left");
+        const rightButton = document.querySelector(".scroll-button.right");
+
+        function updateButtonVisibility() {
+            // Check if the slider can scroll
+            if (slider.scrollWidth > slider.clientWidth) {
+                // Show buttons
+                leftButton.style.display = "block";
+                rightButton.style.display = "block";
+            } else {
+                // Hide buttons if there's no overflow
+                leftButton.style.display = "none";
+                rightButton.style.display = "none";
+            }
+        }
+        console.log("here")
+        // Initial visibility check
+        updateButtonVisibility();
+
+        // Optional: Re-check visibility on window resize (in case of responsive designs)
+        window.addEventListener("resize", updateButtonVisibility);
+    });
+</script>
 <div class="content">
 <link rel="stylesheet" href="/content/content.css">
-<div class="horizontal-container">
+<div id="upper-content" class="horizontal-container">
     <div class="img-container">
         <img src="/content/placeholder.jpg" alt="poster">
     </div>
+    <div>
+        <h1 id="content-name">Название</h1>
+        <div id="action-buttons" class="horizontal-container">
+            <md-filled-button>
+                Добавить
+                <md-icon slot="icon">create_new_folder</md-icon>
+            </md-filled-button>
+            <md-filled-button id="rate">
+                Оценить
+                <md-icon slot="icon">star</md-icon>
+            </md-filled-button>
+        </div>
+    </div>
     <div class="movie-info">
-        <h1>Title</h1>
-        <h3>О фильме</h3>
+        <h1 id="about-mov">О фильме</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <div class="horizontal-container">
+            <md-icon slot="icon">theater_comedy</md-icon>
+            <div class="property">Жанры: </div>
+            <div id="genres" class="value">2000000 $</div>
+        </div>
         <div class="horizontal-container">
             <md-icon slot="icon">language</md-icon>
-            <label class="property">Страна производства: </label>
-            <label id="country" class="value">Страна</label>
+            <div class="property">Страна производства: </div>
+            <div id="country" class="value">Страна</div>
         </div>
         <div class="horizontal-container">
             <md-icon slot="icon">event</md-icon>
-            <label class="property">Дата выхода: </label>
-            <label id="release-date" class="value">00.00.0000</label>
+            <div class="property">Дата выхода: </div>
+            <div id="release-date" class="value">00.00.0000</div>
         </div>
         <div class="horizontal-container">
             <md-icon slot="icon">schedule</md-icon>
-            <label class="property">Продолжительность: </label>
-            <label id="duration" class="value">02:00:00</label>
+            <div class="property">Продолжительность: </div>
+            <div id="duration" class="value">02:00:00</div>
         </div>
         <div class="horizontal-container">
             <md-icon slot="icon">pie_chart</md-icon>
-            <label class="property">Бюджет: </label>
-            <label id="budget" class="value">1000000 $</label>
+            <div class="property">Бюджет: </div>
+            <div id="budget" class="value">1000000 $</div>
         </div>
         <div class="horizontal-container">
             <md-icon slot="icon">attach_money</md-icon>
-            <label class="property">Сборы: </label>
-            <label id="box-office" class="value">2000000 $</label>
+            <div class="property">Сборы: </div>
+            <div id="box-office" class="value">2000000 $</div>
         </div>
     </div>
 </div>
+<h1 class="main-page-text">Актерский состав</h1>
+<div class="wrapper">
+    <section class="slider">
+        <div class="person-container">
+            <div class="image-container">
+                <img src="/home/paceholder.jpg" alt="Description 1">
+            </div>
+            <div id="person-name">Имя</div>
+            <div id="person-role">Роль</div>
+        </div>
+    </section>
+    <button class="scroll-button left">
+        <md-icon slot="icon">chevron_backward</md-icon>
+    </button>
+    <button class="scroll-button right">
+        <md-icon slot="icon">chevron_forward</md-icon>
+    </button>
+</div>
+<!--<h1>Отзывы</h1>-->
+    <md-dialog id="rate-dialog">
+        <div slot="headline">Поставьте оценку</div>
+        <form slot="content" id="form-id" method="dialog">
+            <md-slider step="1" ticks value="0" min="0" max="10"></md-slider>
+        </form>
+        <div slot="actions">
+            <md-text-button form="form-id" value="cancel">Отмена</md-text-button>
+            <md-text-button form="form-id" value="ok">Ок</md-text-button>
+        </div>
+    </md-dialog>
 </div>
 </body>
 </html>

@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="importmap">
+        {
+          "imports": {
+            "@material/web/": "https://esm.run/@material/web/"
+          }
+        }
+    </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
 </head>
 <body>
 <div class="content">
 <h1>About Us</h1>
 <p>This is the about page content.</p>
+    <md-outlined-button>Back</md-outlined-button>
+    <md-filled-button>Next</md-filled-button>
 </div>
 </body>
 </html>
