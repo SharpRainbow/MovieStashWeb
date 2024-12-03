@@ -1,6 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
     const navItems = document.querySelectorAll('.nav-item');
     const mainContent = document.getElementById('main-content');
+    const searchBtn = document.getElementById('search-btn');
+
+    searchBtn.addEventListener('click', () => {
+        const content = document.getElementById('main-header');
+        if (content.style.display === 'none') {
+            content.style.removeProperty('display');
+        } else {
+            content.style.display = 'none'; // Hide the content
+        }
+    });
 
     window.onpopstate = function (event) {
         if (event.state && event.state.content) {
@@ -40,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Присваиваем уникальный ID
                 newElement.id = `item-${index + 1}`; // Используем индекс для уникальности
                 const img = document.createElement('img');
-                img.src = "/home/paceholder.jpg";
+                img.src = "/assets/images/placeholder.jpg";
                 img.alt = `desc${index+1}`;
                 newElement.appendChild(img);
                 newElement.setAttribute("data-page", "/content/content.html")

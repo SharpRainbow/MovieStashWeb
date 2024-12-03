@@ -1,4 +1,3 @@
-/* Reset */
 * {
     /*margin: 0;*/
     /*padding: 0;*/
@@ -6,11 +5,12 @@
     --md-icon-font: 'Material Symbols Rounded'
 }
 
-body {
+header {
     display: flex;
-    font-family: Roboto, system-ui, sans-serif;
-    background-color: #CAE9FE;
-    overflow-x: clip;
+    justify-content: center;
+    align-items: center;
+    --md-icon-size: 48px;
+    gap: 8px;
 }
 
 md-fab {
@@ -18,19 +18,32 @@ md-fab {
     --md-sys-color-primary: black;
 }
 
+#search-btn {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    font-family: Roboto, system-ui, sans-serif;
+    background-color: #CAE9FE;
+}
+
 /* Navigation Rail */
 .nav-rail {
     width: 80px;
+    flex-shrink: 0;
     background-color: #ECFEFF; /* Light blue background */
     color: #333;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 20px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
     z-index: 100;
 }
 
@@ -80,18 +93,88 @@ md-fab {
 
 /* Main Content */
 #main-content {
-    margin-left: 80px; /* Same as nav-rail width to avoid overlap */
     padding-top: 20px;
-    /*padding-left: 20px;*/
+    padding-bottom: 20px;
+    /*overflow-y: auto;*/
     flex-grow: 1;
-    width: calc(100vw - 80px);
+    box-sizing: border-box;
 }
 
-.your-class {
-    margin-left: 100px;
+#main-container {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;  /* Stack content vertically */
+    min-height: 100vh;        /* Ensure it takes at least the full height of the screen */
+}
+
+footer {
+    /*background-color: #333;*/
+    color: #4A5671;
+    padding: 20px;
+    flex-shrink: 0;           /* Prevent the footer from shrinking */
+    position: relative;
+    border-top: 2px solid #ECFEFF; /* Thin separator line */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Distribute space between the left and right */
+    align-items: end;
+    /*align-items: center;*/
+    /*max-width: 1200px;*/
+    margin: 0 auto;
+}
+
+/* Left side (copyright) */
+.footer-left p {
+    margin: 0;
+}
+
+/* Right side (navigation links + social media icons) */
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Footer navigation links */
+.footer-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-nav a {
+    color: #4A5671;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.footer-nav a:hover {
+    text-decoration: underline;
+}
+
+/* Social media icons */
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icons a img {
+    width: 24px;
+    height: 24px;
+}
+
+.social-icons a:hover img {
+    opacity: 0.8; /* Optional: Add a hover effect on the social media icons */
 }
 
 @media screen and (max-device-width: 480px) {
+
+    header {
+        --md-icon-size: 36px;
+        font-size: 12px;
+    }
+
     .nav-label {
         display: none;
     }
@@ -109,8 +192,22 @@ md-fab {
         width: 60px;
     }
 
-    #main-content {
-        margin-left: 60px;
+    footer {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .footer-content {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .footer-left {
+        margin-top: 10px;
+    }
+
+    .footer-right {
+        align-items: center;
     }
 
     md-fab {

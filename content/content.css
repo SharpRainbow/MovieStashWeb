@@ -213,9 +213,7 @@ md-slider {
 
     .scroll-button {
         width: 10px;
-        align-self: center;
         justify-content: center;
-        align-items: center;
     }
 
     .right {
