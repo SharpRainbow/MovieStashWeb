@@ -1,2 +1,0 @@
-# MovieStash Web Version
-## dddd
