@@ -9,11 +9,11 @@
 <h1 class="section-name">Популярно сейчас</h1>
 <link rel="stylesheet" href="/home/home.css">
 <div class="wrapper">
-  <section id="slider-content" class="slider">
+  <div id="slider-content" class="slider">
     <div class="image-container" data-page="/content/content.html">
       <img src="/assets/images/placeholder.jpg" alt="Description 1">
     </div>
-  </section>
+  </div>
   <button id="left-content" class="scroll-button left">
     <md-icon slot="icon">chevron_backward</md-icon>
   </button>
@@ -23,12 +23,12 @@
 </div>
 <h1 class="section-name">Выбор редакторов</h1>
 <div class="wrapper">
-<section id="slider-col" class="slider">
+<div id="slider-col" class="slider">
   <div class="collection-container">
     <md-icon slot="icon">movie</md-icon>
     <label>Collection name</label>
   </div>
-</section>
+</div>
 <button id="left-col" class="scroll-button left">
   <md-icon slot="icon">chevron_backward</md-icon>
 </button>
@@ -36,6 +36,16 @@
   <md-icon slot="icon">chevron_forward</md-icon>
 </button>
 </div>
+<h1 class="section-name">Последние новости</h1>
+  <div class="news-list">
+    <div class="news-container">
+      <img src="/assets/images/placeholder.jpg" alt="news-image">
+      <div class="news-body">
+        <h3>News title</h3>
+        <p>Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.</p>
+      </div>
+    </div>
+  </div>
 <script src="/home/home.js"></script>
 </div>
 </body>
