@@ -43,48 +43,67 @@ document.addEventListener("DOMContentLoaded", () => {
             //nodes.forEach(node => {
             //    [...Array(10)].forEach(_ => node.parentNode.insertBefore(node.cloneNode(true), node));
             //});
-            const container = document.getElementById("slider-content");
-            [...Array(10)].forEach((value, index) => {
-                const newElement = document.createElement('div');
-                newElement.classList.add('image-container');
-                // Присваиваем уникальный ID
-                newElement.id = `item-${index + 1}`; // Используем индекс для уникальности
-                const img = document.createElement('img');
-                img.src = "/assets/images/placeholder.jpg";
-                img.alt = `desc${index+1}`;
-                newElement.appendChild(img);
-                newElement.setAttribute("data-page", "/content/content.html")
-                newElement.setAttribute("data-id", (index+1).toString())
-                container.appendChild(newElement);
-            })
-            const sliderContent = document.getElementById('slider-content');
+            const sliderContent = document.getElementById("slider-content");
+            fetch("http://localhost:8080/v1/contents/base")
+              .then((response) => {
+                 if (response.ok) {
+                     response.json().then(data => {
+                         for (const item of data) {
+                             const newElement = document.createElement('div');
+                             newElement.classList.add('image-container');
+                             newElement.id = `item-${item.id}`;
+                             const img = document.createElement('img');
+                             img.src = item.image;
+                             img.alt = `desc${item.id}`;
+                             newElement.appendChild(img);
+                             newElement.setAttribute("data-page", "/content/content.html")
+                             newElement.setAttribute("data-id", (item.id))
+                             sliderContent.appendChild(newElement);
+                             newElement.addEventListener('click', function() {
+                                 const page = newElement.getAttribute('data-page');
+                                 const id = newElement.getAttribute('data-id');
+                                 console.log(id)
+                                 if (page) {
+                                     navItems.forEach(nav => nav.classList.remove('active'));
+                                     loadContent(page, id);
+                                 }
+                             })
+                         }
+                     })
+                 }
+              })
+              .catch((error) => {
+                  console.error(error);
+                  [...Array(10)].forEach((value, index) => {
+                      const newElement = document.createElement('div');
+                      newElement.classList.add('image-container');
+                      // Присваиваем уникальный ID
+                      newElement.id = `item-${index + 1}`; // Используем индекс для уникальности
+                      const img = document.createElement('img');
+                      img.src = "/assets/images/placeholder.jpg";
+                      img.alt = `desc${index+1}`;
+                      newElement.appendChild(img);
+                      newElement.setAttribute("data-page", "/content/content.html")
+                      newElement.setAttribute("data-id", (index+1).toString())
+                      sliderContent.appendChild(newElement);
+                  });
+              });
             const leftButton = document.getElementById('left-content');
             const rightButton = document.getElementById('right-content');
             leftButton.addEventListener('click', function() {
+                const item = document.querySelector('.image-container')
                 sliderContent.scrollBy({
-                    left: -(items[0].clientWidth + 10),
+                    left: -(item.clientWidth + 10),
                     behavior: 'smooth'
                 });
             });
-
             rightButton.addEventListener('click', function() {
+                const item = document.querySelector('.image-container')
                 sliderContent.scrollBy({
-                    left: (items[0].clientWidth + 10),
+                    left: (item.clientWidth + 10),
                     behavior: 'smooth'
                 });
             });
-
-            const items = document.querySelectorAll('.image-container');
-            items.forEach(item => item.addEventListener('click', function() {
-                const page = item.getAttribute('data-page');
-                const id = item.getAttribute('data-id');
-                console.log(id)
-                if (page) {
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    loadContent(page, id);
-                }
-            }))
-
             sliderContent.addEventListener('scroll', () => {
                 if (sliderContent.scrollLeft === 0) {
                     leftButton.style.display = 'none';
@@ -98,27 +117,39 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            const colNodes = document.querySelectorAll('.collection-container');
-            colNodes.forEach(node => {
-                [...Array(10)].forEach(_ => node.parentNode.insertBefore(node.cloneNode(true), node));
-            });
+            const sliderCollection = document.getElementById("slider-col");
+            [...Array(5)].forEach((value, index) => {
+                const newElement = document.createElement('div');
+                newElement.classList.add('collection-container');
+                // Присваиваем уникальный ID
+                newElement.id = `item-${index + 1}`; // Используем индекс для уникальности
+                const icon = document.createElement('md-icon');
+                icon.setAttribute("slot", "icon");
+                icon.append("movie")
+                newElement.appendChild(icon);
+                const label = document.createElement('label');
+                label.append("Collection name")
+                newElement.appendChild(label);
+                sliderCollection.appendChild(newElement);
+            })
+
             const sliderCol = document.getElementById('slider-col');
             const leftButtonCol = document.getElementById('left-col');
             const rightButtonCol = document.getElementById('right-col');
             leftButtonCol.addEventListener('click', function() {
+                const node = document.querySelector('.collection-container');
                 sliderCol.scrollBy({
-                    left: -(colNodes[0].clientWidth + 10),
+                    left: -(node.clientWidth + 10),
                     behavior: 'smooth'
                 });
             });
-
             rightButtonCol.addEventListener('click', function() {
+                const node = document.querySelector('.collection-container');
                 sliderCol.scrollBy({
-                    left: (colNodes[0].clientWidth + 10),
+                    left: (node.clientWidth + 10),
                     behavior: 'smooth'
                 });
             });
-
             sliderCol.addEventListener('scroll', () => {
                 if (sliderCol.scrollLeft === 0) {
                     leftButtonCol.style.display = 'none';
@@ -131,13 +162,43 @@ document.addEventListener("DOMContentLoaded", () => {
                     rightButtonCol.style.display = 'flex';
                 }
             });
+
+            const newNodes = document.querySelectorAll('.news-container');
+            newNodes.forEach(node => {
+                [...Array(10)].forEach(_ => node.parentNode.insertBefore(node.cloneNode(true), node));
+            });
         }
         else if (url.includes("content")) {
-            const id = window.location.pathname.substring(window.location.pathname.lastIndexOf("/"))
-            console.log(id);
+            const elements = window.location.pathname.split('/').filter(e => e.trim().length > 0)
+            const id = elements[elements.length - 1];
+            console.log(`http://localhost:8080/v1/contents/${id}`)
+            fetch(`http://localhost:8080/v1/contents/${id}`)
+                .then((res) => {
+                    if (res.ok) {
+                        res.json().then(data => {
+                            const imageContainer = document.getElementById('poster');
+                            const contentName = document.getElementById('content-name');
+                            const contentDescription = document.getElementById('content-description');
+                            const contentRelease = document.getElementById('release-date');
+                            const contentDuration = document.getElementById('duration');
+                            const contentBudget = document.getElementById('budget');
+                            const contentBoxOffice = document.getElementById('box-office');
+                            imageContainer.src = data.image;
+                            contentName.innerText = data.title;
+                            contentDescription.innerText = data.description;
+                            contentRelease.innerText = data.releaseDate;
+                            contentDuration.innerText = data.duration;
+                            contentBudget.innerText = `${data.budget} $`;
+                            contentBoxOffice.innerText = `${data.boxOffice} $`
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
             const nodes = document.querySelectorAll('.person-container');
             nodes.forEach(node => {
-               [...Array(15)].forEach(_ => node.parentNode.insertBefore(node.cloneNode(true), node));
+               [...Array(5)].forEach(_ => node.parentNode.insertBefore(node.cloneNode(true), node));
             });
             const slider = document.querySelector(".slider");
             const leftButton = document.querySelector(".scroll-button.left");
@@ -157,6 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             setTimeout(updateButtonVisibility, 10, slider, leftButton, rightButton);
+            // updateButtonVisibility(slider, leftButton, rightButton);
             window.addEventListener("resize", () => {
                 updateButtonVisibility(slider, leftButton, rightButton);
             });
@@ -172,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function loadContent(page, id = "0") {
+    function loadContent(page, id = "1") {
         fetch(page)
             .then(response => {
                 if (!response.ok) {
@@ -206,12 +268,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
     const initialPage = window.location.pathname || 'home';
+    var id = "0";
     var path = ""
     if (initialPage.includes("menu") || initialPage.includes("home") || initialPage === "/") {
         path = "/home/home.html";
     }
     else if (initialPage.includes("content")) {
+        const parts = initialPage.split("/").filter(element => element.trim().length > 0);
         path = "/content/content.html";
+        console.log(parts);
+        if (/^\d+$/.test(parts[parts.length - 1])) {
+            id = parts[parts.length - 1];
+        }
     }
-    loadContent(path);
+    loadContent(path, id);
 });

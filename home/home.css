@@ -14,14 +14,14 @@ body {
 .slider {
     display: flex;
     overflow-x: auto;  /* Enable horizontal scrolling */
-    gap: 10px;         /* Space between items */
+    gap: 12px;         /* Space between items */
     scroll-snap-type: x mandatory;  /* Optional: For a snapping effect */
     padding: 10px 30px;
 }
 
 .slide-item {
     padding: 20px;
-    border-radius: 15px; /* Rounded corners */
+    border-radius: 16px; /* Rounded corners */
     background-color: #ECFEFF; /* Background color of the rectangle */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow effect */
 }
@@ -35,7 +35,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    border-radius: 15px; /* Rounded corners */
+    border-radius: 16px; /* Rounded corners */
     background-color: #ECFEFF; /* Background color of the rectangle */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow effect */
 }
@@ -59,10 +59,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: fill; /* Ensure the image fits within container dimensions */
-    aspect-ratio: 4 / 3; /* Set the desired aspect ratio, e.g., 4:3 */
-    display: block;
     user-select: none;
-    background-color: #f0f0f0; /* Optional: background color for letterboxing */
 }
 
 .slider::-webkit-scrollbar {
@@ -78,7 +75,7 @@ body {
     border: 1px solid #4A5671;
     padding: 10px 20px;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 12px;
     z-index: 1; /* Ensure buttons are visible on top of images */
 }
 
@@ -93,12 +90,15 @@ body {
 
 .news-list {
     margin: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .news-container {
     display: flex;
     align-items: stretch;
-    border-radius: 15px; /* Rounded corners */
+    border-radius: 16px; /* Rounded corners */
     background-color: #ECFEFF; /* Background color of the rectangle */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow effect */
     gap: 12px;
@@ -110,13 +110,6 @@ body {
     border-radius: 12px;
     aspect-ratio: 1.25;
     object-fit: cover;
-}
-
-.news-body {
-    height: 96px;
-    /*overflow: hidden; !* Ensure content outside bounds is hidden *!*/
-    /*text-overflow: ellipsis;*/
-    padding: 0; /* Avoid additional padding adding to the height */
 }
 
 .news-body h3 {
@@ -169,6 +162,24 @@ body {
     .section-name {
         font-size: 24px;
         padding-left: 8px;
+    }
+
+    .news-list {
+        margin: 10px 12px;
+        font-size: 12px;
+    }
+
+    .news-container {
+        padding: 16px;
+    }
+
+    .news-container img {
+        height: 64px;
+    }
+
+    .news-body p {
+        -webkit-line-clamp: 2; /* Constrain to 2 lines for the paragraph */
+        line-height: 1.2; /* Adjust line height for better readability */
     }
 
     label {
